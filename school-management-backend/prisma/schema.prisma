@@ -1,0 +1,151 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  username     String   @unique
+  passwordHash String   @map("password_hash")
+  role         String
+  createdAt    DateTime @default(now()) @map("created_at")
+  exams        Exam[]   @relation("GeneratedBy")
+}
+
+model Student {
+  id         Int      @id @default(autoincrement())
+  admnNo     String?  @unique @map("admn_no")
+  name       String
+  parentName String?  @map("parent_name")
+  address    String?
+  class      String?  @map("class")
+  section    String?  @map("section")
+  dob        DateTime? @map("dob")
+  category   String?
+  rollNo     String?  @map("roll_no")
+  createdAt  DateTime @default(now()) @map("created_at")
+  registrations Registration[]
+  feeDetails     FeeDetail[]
+  issues         Issue[]
+  examResults    ExamResult[]
+}
+
+model Registration {
+  id        Int      @id @default(autoincrement())
+  rNo       Int      @unique @map("r_no")
+  student   Student  @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId Int      @map("student_id")
+  regFor    String?  @map("reg_for")
+  regDate   DateTime @default(now()) @map("reg_date")
+  status    String   @default("pending")
+}
+
+model Setting {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value String
+}
+
+model FeeDetail {
+  id           Int     @id @default(autoincrement())
+  student      Student @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  studentId    Int     @map("student_id")
+  month        String?
+  date         DateTime @default(now())
+  admissionFee Float?   @map("admission_fee")
+  tuitionFee   Float?   @map("tuition_fee")
+  compFee      Float?   @map("comp_fee")
+  lateFee      Float?   @map("late_fee")
+  activityFee  Float?   @map("activity_fee")
+  total        Float?
+}
+
+model Teacher {
+  id          Int     @id @default(autoincrement())
+  name        String?
+  address     String?
+  department  String?
+  designation String?
+  joinDate    DateTime? @map("join_date")
+}
+
+model Book {
+  id             Int     @id @default(autoincrement())
+  bNo            String  @unique @map("b_no")
+  title          String?
+  author         String?
+  subject        String?
+  price          Float?
+  purchaseDate   DateTime? @map("purchase_date")
+  totalCopies    Int     @default(1) @map("total_copies")
+  availableCopies Int    @default(1) @map("available_copies")
+  issues         Issue[]
+}
+
+model Issue {
+  id         Int      @id @default(autoincrement())
+  student    Student? @relation(fields: [studentId], references: [id])
+  studentId  Int?     @map("student_id")
+  book       Book?    @relation(fields: [bookId], references: [id])
+  bookId     Int?     @map("book_id")
+  issueDate  DateTime @default(now()) @map("issue_date")
+  dueDate    DateTime? @map("due_date")
+  returnedOn DateTime? @map("returned_on")
+}
+
+model Question {
+  id        Int    @id @default(autoincrement())
+  text      String
+  option1   String?
+  option2   String?
+  option3   String?
+  option4   String?
+  answer    Int?
+  subject   String?
+  difficulty String?
+  examQuestions ExamQuestion[]
+}
+
+model Exam {
+  id             Int            @id @default(autoincrement())
+  name           String?
+  date           DateTime?
+  durationMinutes Int?
+  generatedBy    User?          @relation("GeneratedBy", fields: [generatedById], references: [id])
+  generatedById  Int?           @map("generated_by")
+  examQuestions  ExamQuestion[]
+  examResults    ExamResult[]
+}
+
+model ExamQuestion {
+  examId     Int
+  questionId Int
+  sequenceNo Int? @map("sequence_no")
+
+  exam     Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  question Question @relation(fields: [questionId], references: [id])
+  @@id([examId, questionId])
+}
+
+model ExamResult {
+  id            Int      @id @default(autoincrement())
+  exam          Exam?    @relation(fields: [examId], references: [id])
+  examId        Int?     @map("exam_id")
+  student       Student? @relation(fields: [studentId], references: [id])
+  studentId     Int?     @map("student_id")
+  marksObtained Float?   @map("marks_obtained")
+  details       Json?    @map("details")
+  submittedAt   DateTime @default(now()) @map("submitted_at")
+}
+
+model Mark {
+  id           Int   @id @default(autoincrement())
+  rollNo       String? @map("roll_no")
+  class        String?
+  term         String?
+  subjectMarks Json?   @map("subject_marks")
+}
