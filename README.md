@@ -7,6 +7,7 @@
 
 ## Startup -
 - npm run dev (downloads mandatory packages)
+- npm run start(to start the program)
 
 ## Developers -
 - Developer - Apurva Anand (apurvaanand51@gmail.com)
