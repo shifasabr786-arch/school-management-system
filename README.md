@@ -6,6 +6,7 @@
 - Database - PostgreSQL
 
 ## Backend Startup -
+- npm run dev
 
 ## Developers -
 - Developer - Apurva Anand (apurvaanand51@gmail.com)
