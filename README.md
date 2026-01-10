@@ -6,7 +6,7 @@
 - Database - PostgreSQL
 
 ## Backend Startup -
-- npm run dev
+- npm run dev (downloads mandatory packages)
 
 ## Developers -
 - Developer - Apurva Anand (apurvaanand51@gmail.com)
