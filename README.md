@@ -5,7 +5,7 @@
 - Backend - NodeJS
 - Database - PostgreSQL
 
-## Backend Startup -
+## Startup -
 - npm run dev (downloads mandatory packages)
 
 ## Developers -
