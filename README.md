@@ -5,8 +5,9 @@
 - Backend - NodeJS
 - Database - PostgreSQL
 
-## Backend Startup -
+## Startup -
 - npm run dev (downloads mandatory packages)
+- npm run start (to start the backend and frontend servers)
 
 ## Developers -
 - Developer - Apurva Anand (apurvaanand51@gmail.com)
