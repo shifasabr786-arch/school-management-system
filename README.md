@@ -3,7 +3,7 @@
 ## Tech Stack - 
 - Frontend - HTML, CSS, Vanilla JS
 - Backend - NodeJS
-- Library - BcryptJS
+- Library - BcryptJS, CORS
 - Database - PostgreSQL
 
 ## Startup -
