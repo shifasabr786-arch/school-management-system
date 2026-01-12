@@ -2,12 +2,7 @@
 
 ## Tech Stack - 
 - Frontend - HTML, CSS, Vanilla JS
-<<<<<<< HEAD
 - Bacgkend - NodeJS
-=======
-- Backend - NodeJS
-- Library - BcryptJS, CORS
->>>>>>> dedd04ae910702ce10ab5d18226e4a32e9cdc695
 - Database - PostgreSQL
 
 ## Startup -
