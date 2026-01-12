@@ -2,7 +2,7 @@
 
 ## Tech Stack - 
 - Frontend - HTML, CSS, Vanilla JS
-- Bacgkend - NodeJS
+- Backend - NodeJS
 - Library - BcryptJS
 - Database - PostgreSQL
 
