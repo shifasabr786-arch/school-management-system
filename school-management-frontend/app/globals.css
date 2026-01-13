@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* app/globals.css - polished global styles for the dashboard */
+
+/* Tailwind base import (keep as-is if your build expects Tailwind directives) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base page and font smoothing */
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  background: #f3f4f6; /* light gray */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial;
+  color: #0f172a; /* slate-900 like */
+}
+
+/* App container */
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Dashboard shell utilities */
+.sidebar {
+  width: 260px;
+  min-height: 100vh;
+  background: linear-gradient(180deg,#ffffff, #fbfbfb);
+  border-right: 1px solid rgba(15,23,42,0.04);
+  padding: 1.25rem;
+}
+
+/* Topbar */
+.topbar {
+  background: #ffffff;
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+  padding: 0.75rem 1rem;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border: 1px solid rgba(15,23,42,0.04);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 1px 2px rgba(2,6,23,0.04);
+}
+
+/* Buttons (primary / neutral) */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  font-weight: 600;
+}
+
+.btn-primary {
+  background: #0ea5a4; /* teal-500 */
+  color: white;
+}
+
+.btn-primary:hover { filter: brightness(.95); }
+
+.btn-ghost {
+  background: transparent;
+  color: #0f172a;
+  border: 1px solid rgba(15,23,42,0.06);
+}
+
+.btn-danger {
+  background: #ef4444; /* red-500 */
+  color: white;
+}
+
+/* Table enhancements */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(2,6,23,0.03);
+}
+
+.table thead {
+  background: #f8fafc;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.table th, .table td {
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid rgba(15,23,42,0.04);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background: #fbfbfd;
+}
+
+/* small helper */
+.hint {
+  color: #64748b; /* gray-500 */
+  font-size: 0.9rem;
+}
+
+/* responsive helper for small screens */
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .topbar { padding-left: .5rem; padding-right: .5rem; }
+}
