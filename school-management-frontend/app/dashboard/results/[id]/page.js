@@ -18,7 +18,7 @@ export default function ResultDetailsPage({ params }) {
     load();
   }, []);
 
-  if (!result) return <p className="p-6">Loading...</p>;
+  if (!resul) return <p className="p-6">Loading...</p>;
 
   return (
     <div className="p-6">
